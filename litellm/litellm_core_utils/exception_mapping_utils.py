@@ -473,6 +473,8 @@ def exception_type(  # type: ignore  # noqa: PLR0915
                 elif (
                     "invalid_request_error" in error_str
                     and "Incorrect API key provided" not in error_str
+                    and "too_many_requests" not in error_str
+                    and "Request didn't generate first token" not in error_str
                 ):
                     exception_mapping_worked = True
                     raise BadRequestError(
