@@ -797,9 +797,11 @@ class AnthropicConfig(AnthropicModelInfo, BaseConfig):
     ) -> Optional[AnthropicThinkingParam]:
         if reasoning_effort is None or reasoning_effort == "none":
             return None
-        if AnthropicConfig._is_claude_4_6_model(
-            model
-        ) or AnthropicConfig._is_claude_4_7_model(model):
+        if (
+            AnthropicConfig._is_claude_4_6_model(model)
+            or AnthropicConfig._is_claude_4_7_model(model)
+            or AnthropicConfig._is_claude_4_8_model(model)
+        ):
             return AnthropicThinkingParam(
                 type="adaptive",
             )
@@ -1093,9 +1095,11 @@ class AnthropicConfig(AnthropicModelInfo, BaseConfig):
                 )
                 # For Claude 4.6+ models, effort is controlled via output_config,
                 # not thinking budget_tokens. Map reasoning_effort to output_config.
-                if AnthropicConfig._is_claude_4_6_model(
-                    model
-                ) or AnthropicConfig._is_claude_4_7_model(model):
+                if (
+                    AnthropicConfig._is_claude_4_6_model(model)
+                    or AnthropicConfig._is_claude_4_7_model(model)
+                    or AnthropicConfig._is_claude_4_8_model(model)
+                ):
                     effort_map = {
                         "low": "low",
                         "minimal": "low",
