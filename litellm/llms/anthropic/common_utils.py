@@ -286,12 +286,25 @@ class AnthropicModelInfo(BaseLLMModelInfo):
         )
 
     @staticmethod
+    def _is_fable_5_model(model: str) -> bool:
+        """Check if the model is a Claude Fable 5 model."""
+        model_lower = model.lower()
+        return any(
+            v in model_lower
+            for v in (
+                "fable-5",
+                "fable_5",
+            )
+        )
+
+    @staticmethod
     def _is_adaptive_thinking_model(model: str) -> bool:
         """Claude 4.6+ models use adaptive thinking with output_config effort."""
         return (
             AnthropicModelInfo._is_claude_4_6_model(model)
             or AnthropicModelInfo._is_claude_4_7_model(model)
             or AnthropicModelInfo._is_claude_4_8_model(model)
+            or AnthropicModelInfo._is_fable_5_model(model)
         )
 
     def is_effort_used(
