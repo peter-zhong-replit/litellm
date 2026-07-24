@@ -802,6 +802,7 @@ class AnthropicConfig(AnthropicModelInfo, BaseConfig):
             or AnthropicConfig._is_claude_4_7_model(model)
             or AnthropicConfig._is_claude_4_8_model(model)
             or AnthropicConfig._is_fable_5_model(model)
+            or AnthropicConfig._is_opus_5_model(model)
         ):
             return AnthropicThinkingParam(
                 type="adaptive",
@@ -1101,6 +1102,7 @@ class AnthropicConfig(AnthropicModelInfo, BaseConfig):
                     or AnthropicConfig._is_claude_4_7_model(model)
                     or AnthropicConfig._is_claude_4_8_model(model)
                     or AnthropicConfig._is_fable_5_model(model)
+                    or AnthropicConfig._is_opus_5_model(model)
                 ):
                     effort_map = {
                         "low": "low",
